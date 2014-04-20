@@ -7,7 +7,6 @@ standard-app-packages
 accounts-password
 d3
 email
-accounts-facebook
 accounts-twitter
 audit-argument-checks
 googlemaps
