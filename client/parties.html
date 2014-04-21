@@ -16,6 +16,10 @@
     {{> inviteDialog}}
   {{/if}}
 
+  {{#if showDisallowedDialog}}
+    {{> disallowedDialog}}
+  {{/if}}
+
 
   <!-- Static navbar -->
   <div class="navbar navbar-default navbar-static-top" role="navigation">
@@ -100,9 +104,7 @@
               <strong><a href="#" class="remove">목록에서 삭제하기</a></strong>.
           </small></div>
         {{/if}}
-        <div>
-          <i> TODO: Can we have comments here? </i>
-        </div>
+        {{> comments}}
 
       {{/with}}
     {{else}}
@@ -232,4 +234,65 @@
   </div>
   </div>
   <div class="modal-backdrop fade in"></div>
+</template>
+
+<template name="disallowedDialog">
+  <div class="modal show" id="disallowedDialog" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <button type="button" class="close cancel" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title">위치 정보 API 허용</h4>
+    </div>
+
+    <div class="modal-body">
+      <p>이 기능은 브라우저의 위치정보 API 사용을 허용해야 사용할 수 있습니다.</p>
+    </div>
+
+    <div class="modal-footer">
+      <a href="#" class="btn btn-primary done cancel">닫기</a>
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="modal-backdrop fade in"></div>
+</template>
+
+<template name="comments">
+  <div><strong>Comments</strong></div>
+    <ul class="list-group">
+    {{#each comments}}
+      {{> comment }}
+    {{/each}}
+    </ul>
+
+    {{#if currentUser}}
+      {{ > commentform }}
+    {{else}}
+      <p class="text-center">Sign in to comment</p>
+    {{/if}}
+</template>
+
+<template name="comment">
+  <li class="list-group-item">
+    <span class="glyphicon glyphicon-user"></span>
+    <span class="author">{{author}}</span>
+    <p>
+      <span class="date">on {{submittedText}}</span>
+    </p>
+    <div class="well well-small">
+    <p>{{body}}</p>
+    </div>
+  </li>
+</template>
+
+<template name="commentform">
+  {{#if error}}
+    <div class="bg-warning" style="padding: 5px;">{{error}}</div>
+  {{/if}}
+  <div class="well well-small">
+      <textarea class="comment-body form-control" id="comment-body" rows="2"></textarea>   
+      <button type="button" class="btn btn-sm btn-primary comment">Comment</button>
+  </div>
 </template>
