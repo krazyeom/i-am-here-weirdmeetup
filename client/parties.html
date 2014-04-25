@@ -81,6 +81,25 @@
         <div class="description">{{description}}</div>
 
         {{> attendance}}
+        
+      <div>
+        <strong>Created</strong>
+        <time class="label label-default pull-right" title="{{dateTimeText created}}" datetime="{{dateTimeText created}}">
+          {{legibleDateTimeText created}}
+        </time>
+      </div>
+      <div>
+        <strong>Begins</strong>
+        <time class="label label-default pull-right" title="{{dateTimeText begins}}" datetime="{{dateTimeText begins}}">
+          {{legibleDateTimeText begins}}
+        </time>
+      </div>
+      <div>
+        <strong>Until</strong>
+        <time class="label label-default pull-right" title="{{dateTimeText expires}}" datetime="{{dateTimeText expires}}">
+          {{legibleDateTimeText expires}}
+        </time>
+      </div>
 
         <div class="rsvp-buttons text-center">
           {{#if currentUser}}
